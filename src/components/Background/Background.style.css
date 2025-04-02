@@ -1,0 +1,20 @@
+.bg-sunny {
+    background: linear-gradient(to top, #ffcf33, #ff9a33);
+  }
+  
+  .bg-cloudy {
+    background: linear-gradient(to top, #b0c4de, #778899);
+  }
+  
+  .bg-rainy {
+    background: linear-gradient(to top, #647d91, #3b5360);
+  }
+  
+  .bg-snowy {
+    background: linear-gradient(to top, #ffffff, #dbe9f4);
+  }
+  
+  .bg-default {
+    background: linear-gradient(to top, #87ceeb, #4682b4);
+  }
+  
