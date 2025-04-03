@@ -1,21 +1,22 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import "./Background.style.css"
-import { WeatherData } from "@/types/Weather";
+import "./Background.style.css";
+import { WeatherCondition } from "@/types/Weather";
 
 interface WeatherBackgroundProps {
-  weatherData: WeatherData | null;
+  weatherData: WeatherCondition | null;
+  children: React.ReactNode; // children 추가
 }
 
-export default function WeatherBackground({ weatherData }: WeatherBackgroundProps) {
+export default function WeatherBackground({ weatherData, children }: WeatherBackgroundProps) {
   const [theme, setTheme] = useState("bg-default");
 
   useEffect(() => {
     if (!weatherData) return;
 
-    const condition = weatherData.weather?.[0]?.weatherType;
-
+    const condition = weatherData.weatherType;
+    console.log("배경 Condition : ",condition);
     switch (condition) {
       case "Clear":
         setTheme("bg-sunny");
@@ -34,5 +35,9 @@ export default function WeatherBackground({ weatherData }: WeatherBackgroundProp
     }
   }, [weatherData]);
 
-  return <div className={`w-full h-screen ${theme}`}></div>;
+  return (
+    <div className={`w-full h-screen ${theme}`}>
+      {children} {/* 내부 컨텐츠 렌더링 */}
+    </div>
+  );
 }
