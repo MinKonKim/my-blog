@@ -10,8 +10,9 @@ export async function GET(request: Request) {
   const { nx, ny } = convertToGrid(lat, lon);
 
   const API_KEYS = [
-    process.env.ENCODING_WEATHER_API_KEY,
     process.env.DECODING_WEATHER_API_KEY,
+    process.env.ENCODING_WEATHER_API_KEY,
+   
   ].filter(Boolean); // 빈 값 제거
 
   const baseDate = new Date().toISOString().split("T")[0].replace(/-/g, "");

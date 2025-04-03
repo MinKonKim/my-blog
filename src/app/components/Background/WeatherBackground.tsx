@@ -5,17 +5,17 @@ import "./Background.style.css";
 import { WeatherCondition } from "@/types/Weather";
 
 interface WeatherBackgroundProps {
-  weatherData: WeatherCondition | null;
+  weatherCondition: WeatherCondition | null;
   children: React.ReactNode; // children 추가
 }
 
-export default function WeatherBackground({ weatherData, children }: WeatherBackgroundProps) {
+export default function WeatherBackground({ weatherCondition, children }: WeatherBackgroundProps) {
   const [theme, setTheme] = useState("bg-default");
 
   useEffect(() => {
-    if (!weatherData) return;
+    if (!weatherCondition) return;
 
-    const condition = weatherData.weatherType;
+    const condition = weatherCondition.weatherType;
     console.log("배경 Condition : ",condition);
     switch (condition) {
       case "Clear":
@@ -33,7 +33,7 @@ export default function WeatherBackground({ weatherData, children }: WeatherBack
       default:
         setTheme("bg-default");
     }
-  }, [weatherData]);
+  }, [weatherCondition]);
 
   return (
     <div className={`w-full h-screen ${theme}`}>
