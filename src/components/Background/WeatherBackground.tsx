@@ -16,7 +16,6 @@ export default function WeatherBackground({ weatherCondition, children }: Weathe
     if (!weatherCondition) return;
 
     const condition = weatherCondition.weatherType;
-    console.log("배경 Condition : ",condition);
     switch (condition) {
       case "Clear":
         setTheme("bg-sunny");

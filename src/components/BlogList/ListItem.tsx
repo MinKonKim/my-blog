@@ -1,17 +1,19 @@
-import React from 'react'
+import React from "react";
 
 interface ListItemProps {
-    title : string,
-    description : string
+  title: string;
+  publishedDate: number;
 }
 
-const ListItem = ({title, description}:ListItemProps) => {
+const ListItem = ({ title, publishedDate }: ListItemProps) => {
   return (
-    <div className='w-full bg-neutral-400 flex flex-col'>
-        <title className='text-2xl font-semibold'>{title}</title>
-        <p>{description}</p>
+    <div className="p-4 bg-white/60 backdrop-blur-md rounded-lg shadow-md">
+      <h2 className="text-lg font-semibold text-gray-900">{title}</h2>
+      <p className="text-sm text-gray-600">
+        {publishedDate === 0 ? "오늘" : `${publishedDate}일차`}
+      </p>
     </div>
-  )
-}
+  );
+};
 
-export default ListItem
+export default ListItem;

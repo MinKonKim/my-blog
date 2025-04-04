@@ -1,31 +1,40 @@
-import { fetchNotionDb } from '@/utils/fetchNotionDb'
-import React from 'react'
+import { fetchNotionDb } from "@/utils/fetchNotionDb";
+import React from "react";
+import ListItem from "./ListItem";
+import Link from "next/link";
 
-const BlogList = async() => {
-  const list =  await fetchNotionDb();
-  if(!Array.isArray(list)){
+const BlogList = async () => {
+  const list = await fetchNotionDb();
+  if (!Array.isArray(list)) {
     return (
-    <div>
-        <p>목록이 존재하지 않습니다</p>
-    </div>
-    )
+      <div className="p-6 bg-white/50 backdrop-blur-md rounded-xl shadow-lg">
+        <p className="text-gray-700 text-center">목록이 존재하지 않습니다</p>
+      </div>
+    );
   }
-  return (
-    <div className=''>
-        <h2 className='text-4xl'>포스트</h2>
-            {list.length ===0?<p>포스트가 없습니다.</p> :
-            <ul>
-                {list.map((item) => (
-                <div key={item.id}>
-                    
-                {/* 데이터베이스의 속성에 따라 렌더링 */}
-                 <h2>{item.properties.이름.title[0].plain_text}</h2>
-                 {/* 기타 속성 렌더링 */}
-             </div>
-             ))}
-            </ul>}
-    </div>
-  )
-}
 
-export default BlogList
+  return (
+    <div className="max-w-2xl mx-auto p-6 bg-white/50 backdrop-blur-md rounded-xl shadow-lg">
+      <h2 className="text-4xl font-bold text-gray-800 mb-4 text-center">
+        포스트
+      </h2>
+      {list.length === 0 ? (
+        <p className="text-gray-600 text-center">포스트가 없습니다.</p>
+      ) : (
+        <ul className="divide-y divide-gray-300/50 flex flex-col gap-2">
+          {list.map((item) => {
+            const title = item.properties.title.title[0].plain_text;
+            const publishedDate = item.properties.published_date.formula.number;
+            return (
+              <Link key={item.id} href={`/page/${item.id}`}>
+                <ListItem title={title} publishedDate={publishedDate} />
+              </Link>
+            );
+          })}
+        </ul>
+      )}
+    </div>
+  );
+};
+
+export default BlogList;
