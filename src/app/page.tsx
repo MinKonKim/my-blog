@@ -1,7 +1,7 @@
 import { fetchWeatherType } from "@/utils/fetchWeatherType";
-import WeatherBackground from "./components/Background/WeatherBackground";
-import WeatherCard from "./components/WeatherCard";
-import BlogList from "./components/BlogList/BlogList";
+import WeatherBackground from "../components/Background/WeatherBackground";
+import WeatherCard from "../components/WeatherCard";
+import BlogList from "../components/BlogList/BlogList";
  const Home=async()=> {
   const weatherType = await fetchWeatherType();
   console.log(weatherType);
@@ -10,7 +10,7 @@ import BlogList from "./components/BlogList/BlogList";
     <div className="">
       <main className="">
           <WeatherCard weatherCondition={weatherType}/>
-          <div>
+          <div className="border-2">
             <BlogList/>
           </div>
       </main>
