@@ -26,7 +26,7 @@ const BlogList = async () => {
             const title = item.properties.title.title[0].plain_text;
             const publishedDate = item.properties.published_date.formula.number;
             return (
-              <Link key={item.id} href={`/page/${item.id}`}>
+              <Link key={item.id} href={`/posts/${item.id}`}>
                 <ListItem title={title} publishedDate={publishedDate} />
               </Link>
             );

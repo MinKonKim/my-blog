@@ -1,9 +1,9 @@
-import { notion } from "@/utils/notion";
+import { notion } from "@/utils/notion/notion";
 import { NextRequest, NextResponse } from "next/server";
 
 export const GET = async (request: NextRequest) => {
   const { searchParams } = new URL(request.url);
-  const pageId = searchParams.get("id");
+  const pageId = searchParams.get("pageId");
 
   if (!pageId) {
     return NextResponse.json(
@@ -13,8 +13,18 @@ export const GET = async (request: NextRequest) => {
   }
 
   try {
-    const response = await notion.pages.retrieve({ page_id: pageId });
-    return NextResponse.json(response);
+    // 페이지 메타데이터 가져오기
+    const pageMetadata = await notion.pages.retrieve({ page_id: pageId });
+
+    // 페이지 콘텐츠 가져오기
+    const pageContent = await notion.blocks.children.list({
+      block_id: pageId,
+    });
+
+    return NextResponse.json({
+      metadata: pageMetadata,
+      content: pageContent,
+    });
   } catch (error) {
     console.error("Notion 페이지 조회 중 오류 발생:", error);
     return NextResponse.json(

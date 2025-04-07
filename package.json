@@ -11,16 +11,25 @@
   "dependencies": {
     "@notionhq/client": "^2.3.0",
     "jsdom": "^26.0.0",
+    "lqip-modern": "^2.2.1",
     "next": "15.2.4",
+    "notion-client": "^7.3.0",
+    "notion-compat": "^7.3.0",
+    "p-map": "^7.0.3",
+    "p-memoize": "^7.1.1",
+    "prismjs": "^1.30.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-icons": "^5.5.0"
+    "react-icons": "^5.5.0",
+    "react-notion-x": "^7.3.0",
+    "react-tweet-embed": "^2.0.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
     "@types/jsdom": "^21.1.7",
     "@types/node": "^20",
+    "@types/prismjs": "^1.26.5",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
