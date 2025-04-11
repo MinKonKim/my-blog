@@ -1,18 +1,7 @@
 import { CategoryType } from "@/types/NotionDB";
 import Image from "next/image";
 import React from "react";
-
-const notionColorToTailwind = {
-  red: "bg-red-300",
-  orange: "bg-orange-300",
-  yellow: "bg-yellow-300",
-  green: "bg-green-300",
-  blue: "bg-blue-300",
-  purple: "bg-purple-300",
-  pink: "bg-pink-300",
-  gray: "bg-gray-300",
-  brown: "bg-yellow-800", // Tailwind에는 brown이 없으므로 유사한 색상 사용
-};
+import TagTip from "./TagTip";
 
 interface ListItemProps {
   title: string;
@@ -38,17 +27,9 @@ const ListItem = ({
           </p>
         </div>
         <ul>
-          {multiSelect.map((select) => {
-            const bgColor = notionColorToTailwind[select.color] || "gray-300";
-            return (
-              <div
-                key={select.id}
-                className={`inline-block ${bgColor} text-black text-sm font-semibold px-3 py-1 rounded-full mr-2 mb-2 flex justify-center items-center`}
-              >
-                {select.name}
-              </div>
-            );
-          })}
+          {multiSelect.map((select) => (
+            <TagTip key={select.id} select={select} />
+          ))}
         </ul>
       </div>
     </div>

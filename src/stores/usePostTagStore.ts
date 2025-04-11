@@ -1,3 +1,5 @@
+import { enableMapSet } from "immer";
+enableMapSet(); // ✅ 이걸 제일 위에 넣어주세요
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import { immer } from "zustand/middleware/immer";
@@ -12,7 +14,7 @@ type PersistedState = {
   items: string[];
 };
 
-export const postTagStore = create<postTagType>()(
+export const usePostTagStore = create<postTagType>()(
   persist(
     immer((set, get) => ({
       items: new Set<string>(),
@@ -48,3 +50,7 @@ export const postTagStore = create<postTagType>()(
     }
   )
 );
+
+// shallow 사용 예시
+// 컴포넌트에서 다음과 같이 사용할 수 있습니다:
+// const items = usePostTagStore(state => state.items, shallow);

@@ -1,8 +1,8 @@
 // app/blog/layout.tsx
 import { ReactNode } from "react";
 import WeatherBackground from "@/components/Background/WeatherBackground";
-import Sidebar from "@/components/Sidebar/Sidebar";
 import { fetchWeatherType } from "@/utils/fetchWeatherType";
+import Sidebar from "@/components/Sidebar/Sidebar";
 
 export default async function BlogLayout({
   children,
