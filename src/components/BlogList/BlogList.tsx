@@ -2,6 +2,7 @@ import { fetchNotionDb } from "@/utils/fetchNotionDb";
 import React from "react";
 import ListItem from "./ListItem";
 import Link from "next/link";
+import { CategoryType } from "@/types/NotionDB";
 
 const BlogList = async () => {
   const list = await fetchNotionDb();
@@ -12,7 +13,6 @@ const BlogList = async () => {
       </div>
     );
   }
-
   return (
     <div className="max-w-2xl mx-auto p-6 bg-white/50 backdrop-blur-md rounded-xl shadow-lg">
       <h2 className="text-4xl font-bold text-gray-800 mb-4 text-center">
@@ -25,9 +25,15 @@ const BlogList = async () => {
           {list.map((item) => {
             const title = item.properties.title.title[0].plain_text;
             const publishedDate = item.properties.published_date.formula.number;
+            const multiSelect: CategoryType[] =
+              item.properties.categories.multi_select;
             return (
-              <Link key={item.id} href={`/posts/${item.id}`}>
-                <ListItem title={title} publishedDate={publishedDate} />
+              <Link key={item.id} href={item.public_url}>
+                <ListItem
+                  title={title}
+                  publishedDate={publishedDate}
+                  multiSelect={multiSelect}
+                />
               </Link>
             );
           })}

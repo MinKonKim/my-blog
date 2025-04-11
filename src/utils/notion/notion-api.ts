@@ -3,7 +3,7 @@ import { NotionAPI } from "notion-client";
 const notionUser = process.env.NOTION_USER_ID;
 const notionTokenv2 = process.env.NOTION_TOKEN_V2;
 
-const notionApi = new NotionAPI({
+export const notionApi = new NotionAPI({
   activeUser: notionUser,
   authToken: notionTokenv2,
 });

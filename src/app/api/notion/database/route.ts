@@ -5,7 +5,15 @@ export async function GET() {
   try {
     if (!databaseId)
       return Response.json({ message: "Database_Id 가 없습니다." });
-    const response = await notion.databases.query({ database_id: databaseId! });
+    const response = await notion.databases.query({
+      database_id: databaseId!,
+      sorts: [
+        {
+          timestamp: "created_time",
+          direction: "descending",
+        },
+      ],
+    });
     return Response.json(response.results);
   } catch (error) {
     return Response.json(error);
