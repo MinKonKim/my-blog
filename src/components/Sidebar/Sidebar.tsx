@@ -167,29 +167,6 @@ export default function Sidebar() {
                         </a>
                       </li>
                     ))}
-
-                    <li>
-                      <a
-                        href="#"
-                        className="flex items-center gap-2 p-2 rounded-md hover:bg-gray-200 transition-colors"
-                      >
-                        <span className="flex items-center">
-                          <span className="text-gray-600 mr-2">•</span>
-                          포스트 키워드2
-                        </span>
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        className="flex items-center gap-2 p-2 rounded-md hover:bg-gray-200 transition-colors"
-                      >
-                        <span className="flex items-center">
-                          <span className="text-gray-600 mr-2">•</span>
-                          ...
-                        </span>
-                      </a>
-                    </li>
                   </ul>
                 )}
               </li>
