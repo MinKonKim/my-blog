@@ -1,19 +1,20 @@
 // components/MotionPage.tsx
 "use client";
 
-import { motion, useScroll, useSpring } from "motion/react";
+import { motion } from "motion/react";
 import { useRef } from "react";
 import IntroSection from "../Sections/IntroSection";
+import BlogSection from "../Sections/BlogSection";
 
 const MotionPage = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   // containerRef를 대상으로 스크롤 진행률 측정
-  const { scrollYProgress } = useScroll({ target: containerRef });
-  const scaleX = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
-    restDelta: 0.001,
-  });
+  //   const { scrollYProgress } = useScroll({ target: containerRef });
+  //   const scaleX = useSpring(scrollYProgress, {
+  //     stiffness: 100,
+  //     damping: 30,
+  //     restDelta: 0.001,
+  //   });
 
   return (
     <div
@@ -24,15 +25,7 @@ const MotionPage = () => {
       <IntroSection />
 
       {/* Recent Posts Section – 부드럽게 나타나기 */}
-      <motion.section
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 0.8 }}
-        viewport={{ once: true }}
-        className="h-screen snap-start flex items-center justify-center bg-gray-100"
-      >
-        <div className="text-xl">📝 최근 포스트 모음</div>
-      </motion.section>
+      <BlogSection />
 
       {/* Projects Section – 마우스 호버 시 확대 효과 */}
       <section className="h-screen snap-start flex gap-4 items-center justify-center bg-blue-50">
@@ -62,10 +55,10 @@ const MotionPage = () => {
       </motion.section>
 
       {/* Scroll Progress Bar */}
-      <motion.div
+      {/* <motion.div
         className="fixed bottom-4 left-0 right-0 h-[4px] bg-red-500 origin-left z-100"
         style={{ scaleX }}
-      />
+      /> */}
     </div>
   );
 };

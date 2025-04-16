@@ -5,7 +5,7 @@ import Link from "next/link";
 import { CategoryType } from "@/types/NotionDB";
 
 const BlogList = async () => {
-  const list = await fetchNotionDb();
+  const list = await fetchNotionDb({ number: 5 });
   if (!Array.isArray(list)) {
     return (
       <div className="p-6 bg-white/50 backdrop-blur-md rounded-xl shadow-lg">

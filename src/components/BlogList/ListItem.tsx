@@ -21,7 +21,9 @@ const ListItem = ({
       {url && <Image alt="미리보기" width={100} height={100} src={url} />}
       <div className="p-4 bg-white/60 backdrop-blur-md rounded-lg shadow-md">
         <div className="flex justify-between">
-          <h2 className="text-lg font-semibold text-gray-900">{title}</h2>
+          <h2 className="text-lg font-semibold text-gray-900 truncate max-w-1/2">
+            {title}
+          </h2>
           <p className="text-sm text-gray-600">
             {publishedDate === 0 ? "오늘" : `${publishedDate}일차`}
           </p>
