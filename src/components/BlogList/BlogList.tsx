@@ -1,45 +1,84 @@
-import { fetchNotionDb } from "@/utils/fetchNotionDb";
-import React from "react";
+// components/BlogList/BlogList.tsx
+"use client";
+
+import { CategoryType } from "@/types/NotionDB";
 import ListItem from "./ListItem";
 import Link from "next/link";
-import { CategoryType } from "@/types/NotionDB";
+import { motion } from "framer-motion";
 
-const BlogList = async () => {
-  const list = await fetchNotionDb({ number: 5 });
-  if (!Array.isArray(list)) {
-    return (
-      <div className="p-6 bg-white/50 backdrop-blur-md rounded-xl shadow-lg">
-        <p className="text-gray-700 text-center">목록이 존재하지 않습니다</p>
-      </div>
-    );
-  }
+interface BlogPost {
+  id: string;
+  public_url: string;
+  properties: {
+    title: {
+      title: { plain_text: string }[];
+    };
+    published_date: {
+      formula: { number: number };
+    };
+    categories: {
+      multi_select: CategoryType[];
+    };
+  };
+}
+
+interface BlogListProps {
+  list: BlogPost[];
+}
+
+const BlogList = ({ list }: BlogListProps) => {
   return (
-    <div className="max-w-2xl mx-auto p-6 bg-white/50 backdrop-blur-md rounded-xl shadow-lg">
+    <motion.div
+      className="max-w-2xl mx-auto p-6 bg-white/50 backdrop-blur-md rounded-xl shadow-lg"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+    >
       <h2 className="text-4xl font-bold text-gray-800 mb-4 text-center">
         포스트
       </h2>
       {list.length === 0 ? (
         <p className="text-gray-600 text-center">포스트가 없습니다.</p>
       ) : (
-        <ul className="divide-y divide-gray-300/50 flex flex-col gap-2">
+        <motion.ul
+          className="divide-y divide-gray-300/50 flex flex-col gap-2"
+          initial="hidden"
+          animate="visible"
+          variants={{
+            visible: {
+              transition: { staggerChildren: 0.1 },
+            },
+          }}
+        >
           {list.map((item) => {
-            const title = item.properties.title.title[0].plain_text;
+            const title =
+              item.properties.title.title[0]?.plain_text ?? "제목 없음";
             const publishedDate = item.properties.published_date.formula.number;
             const multiSelect: CategoryType[] =
               item.properties.categories.multi_select;
+
             return (
-              <Link key={item.id} href={item.public_url}>
-                <ListItem
-                  title={title}
-                  publishedDate={publishedDate}
-                  multiSelect={multiSelect}
-                />
-              </Link>
+              <motion.li
+                key={item.id}
+                variants={{
+                  hidden: { opacity: 0, y: 10 },
+                  visible: { opacity: 1, y: 0 },
+                }}
+                whileHover={{ scale: 1.01 }}
+              >
+                <Link href={item.public_url}>
+                  <ListItem
+                    title={title}
+                    publishedDate={publishedDate}
+                    multiSelect={multiSelect}
+                  />
+                </Link>
+              </motion.li>
             );
           })}
-        </ul>
+        </motion.ul>
       )}
-    </div>
+    </motion.div>
   );
 };
 

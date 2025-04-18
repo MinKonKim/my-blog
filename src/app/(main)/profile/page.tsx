@@ -150,7 +150,7 @@ const ProfilePage = () => {
             width: isHovered ? "200%" : "100%",
             height: isHovered ? "200%" : "100%",
             zIndex: isHovered ? 10 : 1,
-            transition: { duration: 0.3 },
+            transition: { duration: 0.5 },
           }}
           onMouseEnter={() => setHoveredItem(item.id)}
           onMouseLeave={() => setHoveredItem(null)}
@@ -188,7 +188,7 @@ const ProfilePage = () => {
 
   return (
     <div className="p-4" style={{ minHeight: `${windowHeight}px` }}>
-      <h1 className="text-6xl font-bold mb-8 text-center">프로필</h1>
+      <h1 className="text-6xl font-bold mb-4 mt-2 text-center">프로필</h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 relative">
         {gridPositions.map((position) => renderGridCell(position))}
       </div>

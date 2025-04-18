@@ -15,12 +15,14 @@ import {
 import { usePostTagStore } from "@/stores/usePostTagStore";
 import { Projects } from "@/constants/projects";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export default function Sidebar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isProjectsOpen, setIsProjectsOpen] = useState(false);
   const [isPostsOpen, setIsPostsOpen] = useState(false);
   const [postTagList, setPostTagList] = useState<string[]>([]);
+  const router = useRouter();
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
   };
@@ -32,6 +34,10 @@ export default function Sidebar() {
 
   const togglePosts = () => {
     setIsPostsOpen(!isPostsOpen);
+  };
+
+  const handleTagChange = (newTag: string) => {
+    router.push(`/blog?tag=${newTag}`);
   };
 
   useEffect(() => {
@@ -139,7 +145,7 @@ export default function Sidebar() {
                     {postTagList.map((postTag) => (
                       <li key={postTag}>
                         <a
-                          href="#"
+                          onClick={() => handleTagChange(postTag)}
                           className="flex items-center gap-2 p-2 rounded-md hover:bg-gray-200 transition-colors"
                         >
                           <span className="flex items-center">

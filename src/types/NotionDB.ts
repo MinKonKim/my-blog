@@ -14,3 +14,9 @@ export interface CategoryType {
   name: string;
   color: NotionColor;
 }
+
+export type DBTag = {
+  color: string;
+  id: string;
+  name: string;
+};

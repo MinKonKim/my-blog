@@ -4,6 +4,7 @@ import WeatherBackground from "@/components/Background/WeatherBackground";
 import { fetchWeatherType } from "@/utils/fetchWeatherType";
 import Sidebar from "@/components/Sidebar/Sidebar";
 import ClientProvider from "@/components/Provider/ClientProvider";
+import { PageTransitionProvider } from "@/components/Provider/PageTransitionProvider";
 
 export default async function BlogLayout({
   children,
@@ -15,10 +16,12 @@ export default async function BlogLayout({
   return (
     <WeatherBackground weatherCondition={weatherType}>
       <ClientProvider>
-        <div className="flex min-h-screen">
-          <Sidebar />
-          <main className="flex-1 p-4">{children}</main>
-        </div>
+        <PageTransitionProvider variant="slide">
+          <div className="flex min-h-screen">
+            <Sidebar />
+            <main className="flex-1 p-4">{children}</main>
+          </div>
+        </PageTransitionProvider>
       </ClientProvider>
     </WeatherBackground>
   );

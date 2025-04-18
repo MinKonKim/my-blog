@@ -20,7 +20,7 @@ const ListItem = ({
     <div>
       {url && <Image alt="미리보기" width={100} height={100} src={url} />}
       <div className="p-4 bg-white/60 backdrop-blur-md rounded-lg shadow-md">
-        <div className="flex justify-between">
+        <div className="title flex justify-between">
           <h2 className="text-lg font-semibold text-gray-900 truncate max-w-1/2">
             {title}
           </h2>
@@ -28,11 +28,15 @@ const ListItem = ({
             {publishedDate === 0 ? "오늘" : `${publishedDate}일차`}
           </p>
         </div>
-        <ul>
-          {multiSelect.map((select) => (
-            <TagTip key={select.id} select={select} />
-          ))}
-        </ul>
+        <div className="mt-2">
+          {" "}
+          {/* 간격을 위해 margin-top 추가 */}
+          <ul className="tag">
+            {multiSelect.map((select) => (
+              <TagTip key={select.id} select={select} />
+            ))}
+          </ul>
+        </div>
       </div>
     </div>
   );
