@@ -13,6 +13,8 @@ import {
   ChevronRight,
 } from "lucide-react";
 import { usePostTagStore } from "@/stores/usePostTagStore";
+import { Projects } from "@/constants/projects";
+import Link from "next/link";
 
 export default function Sidebar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -41,7 +43,7 @@ export default function Sidebar() {
     <>
       {/* 토글 버튼 */}
       <button
-        className="fixed top-4 left-4 z-30 p-2 text-blue-600 bg-white/50 rounded-md hover:bg-white focus:outline-none transition-all duration-300"
+        className="fixed top-4 left-4 z-30 p-2 text-black/50 bg-white/50 rounded-md hover:bg-white focus:outline-none transition-all duration-300"
         onClick={toggleSidebar}
         aria-label="사이드바 토글"
       >
@@ -59,17 +61,17 @@ export default function Sidebar() {
           <nav>
             <ul className="space-y-4">
               <li>
-                <a
-                  href="#"
+                <Link
+                  href="/"
                   className="flex items-center gap-3 p-2 rounded-md hover:bg-gray-200 transition-colors"
                 >
                   <Home size={20} />
                   <span>홈</span>
-                </a>
+                </Link>
               </li>
               <li>
                 <a
-                  href="#"
+                  href="/profile"
                   className="flex items-center gap-3 p-2 rounded-md hover:bg-gray-200 transition-colors"
                 >
                   <User size={20} />
@@ -97,39 +99,19 @@ export default function Sidebar() {
                 {/* 프로젝트 하위 메뉴 */}
                 {isProjectsOpen && (
                   <ul className="ml-6 mt-2 space-y-2">
-                    <li>
-                      <a
-                        href="#"
-                        className="flex items-center gap-2 p-2 rounded-md hover:bg-gray-200 transition-colors"
-                      >
-                        <span className="flex items-center">
-                          <span className="text-gray-600 mr-2">•</span>
-                          프로젝트 주제1
-                        </span>
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        className="flex items-center gap-2 p-2 rounded-md hover:bg-gray-200 transition-colors"
-                      >
-                        <span className="flex items-center">
-                          <span className="text-gray-600 mr-2">•</span>
-                          프로젝트 주제2
-                        </span>
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        className="flex items-center gap-2 p-2 rounded-md hover:bg-gray-200 transition-colors"
-                      >
-                        <span className="flex items-center">
-                          <span className="text-gray-600 mr-2">•</span>
-                          ...
-                        </span>
-                      </a>
-                    </li>
+                    {Projects.map((project) => (
+                      <li key={project.title}>
+                        <a
+                          href={project.github}
+                          className="flex items-center gap-2 p-2 rounded-md hover:bg-gray-200 transition-colors"
+                        >
+                          <span className="flex items-center">
+                            <span className="text-gray-600 mr-2">•</span>
+                            {project.title}
+                          </span>
+                        </a>
+                      </li>
+                    ))}
                   </ul>
                 )}
               </li>
