@@ -147,8 +147,8 @@ const ProfilePage = () => {
             zIndex: isHovered ? 10 : 1,
           }}
           animate={{
-            width: isHovered ? "200%" : "100%",
-            height: isHovered ? "200%" : "100%",
+            width: isHovered ? "210%" : "100%",
+            height: isHovered ? "210%" : "100%",
             zIndex: isHovered ? 10 : 1,
             transition: { duration: 0.5 },
           }}
@@ -157,7 +157,7 @@ const ProfilePage = () => {
         >
           <motion.div className="p-6 h-full flex flex-col">
             <h2
-              className={`transition-all duration-300 font-bold text-white mb-2 ${
+              className={`transition-all duration-300 font-bold text-white ${
                 isHovered ? "text-6xl" : "text-4xl"
               }`}
             >

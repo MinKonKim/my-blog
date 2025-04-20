@@ -30,7 +30,7 @@ const BlogList = ({ list }: BlogListProps) => {
   return (
     <motion.div
       className="max-w-2xl mx-auto p-6 bg-white/50 backdrop-blur-md rounded-xl shadow-lg"
-      initial={{ opacity: 0, y: 20 }}
+      initial={false}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
     >

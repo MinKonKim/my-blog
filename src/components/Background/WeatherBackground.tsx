@@ -2,20 +2,20 @@
 
 import { useEffect, useState } from "react";
 import "./Background.style.css";
-import { WeatherCondition } from "@/types/Weather";
+import useWeatherCondition from "@/hook/useWeatherCondition";
 
 interface WeatherBackgroundProps {
-  weatherCondition: WeatherCondition | null;
   children: React.ReactNode; // children 추가
 }
 
-export default function WeatherBackground({ weatherCondition, children }: WeatherBackgroundProps) {
+export default function WeatherBackground({
+  children,
+}: WeatherBackgroundProps) {
   const [theme, setTheme] = useState("bg-default");
+  const weatherCondition = useWeatherCondition();
+  const condition = weatherCondition.data?.weatherType || "default";
 
   useEffect(() => {
-    if (!weatherCondition) return;
-
-    const condition = weatherCondition.weatherType;
     switch (condition) {
       case "Clear":
         setTheme("bg-sunny");
@@ -32,7 +32,7 @@ export default function WeatherBackground({ weatherCondition, children }: Weathe
       default:
         setTheme("bg-default");
     }
-  }, [weatherCondition]);
+  }, [condition]);
 
   return (
     <div className={`w-full h-screen ${theme}`}>
